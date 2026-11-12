@@ -1,25 +1,24 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene format=3 uid="uid://eogo123encom"]
 
-[ext_resource type="Script" path="res://scenes/car/car.gd" id="1_car"]
-[ext_resource type="Texture2D" path="res://assets/sprites/carro.png" id="2_carro"]
-[ext_resource type="Script" path="res://scripts/car_model.gd" id="3_model"]
+[ext_resource type="Script" uid="uid://d2u1vurn70qsd" path="res://scenes/car/car.gd" id="1_car"]
+[ext_resource type="Texture2D" uid="uid://dgc4pg7oveh3n" path="res://assets/sprites/carro.png" id="2_carro"]
+[ext_resource type="Script" uid="uid://d2ndig7sl0vsr" path="res://scripts/car_model.gd" id="3_model"]
 
 [sub_resource type="Resource" id="CarModel_default"]
 resource_local_to_scene = true
 script = ExtResource("3_model")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
-size = Vector2(34, 78)
+size = Vector2(78, 34)
 
-[node name="Car" type="CharacterBody2D"]
-motion_mode = 1
-collision_layer = 1
+[node name="Car" type="CharacterBody2D" unique_id=2060131319]
 collision_mask = 4
+motion_mode = 1
 script = ExtResource("1_car")
 model = SubResource("CarModel_default")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=198961405]
 texture = ExtResource("2_carro")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2047774652]
 shape = SubResource("RectangleShape2D_body")

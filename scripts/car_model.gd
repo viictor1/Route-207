@@ -25,7 +25,7 @@ extends Resource
 @export var stationary_threshold: float = 14.0
 
 var velocity: Vector2 = Vector2.ZERO
-var heading: float = -PI * 0.5
+var heading: float = 0.0
 var steer: float = 0.0
 
 var speed: float = 0.0
