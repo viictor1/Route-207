@@ -4,10 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://eogo123encom" path="res://scenes/car/car.tscn" id="2_car"]
 [ext_resource type="Script" uid="uid://c5vo37s52v7ph" path="res://scenes/car/car_camera.gd" id="3_camera"]
 [ext_resource type="Script" uid="uid://d2ndig7sl0vsr" path="res://scripts/car_model.gd" id="3_tbgi4"]
+[ext_resource type="Script" uid="uid://d1w6msng0622f" path="res://scenes/linha_chegada.gd" id="5_tbgi4"]
 
 [sub_resource type="Resource" id="Resource_jyhfs"]
 resource_local_to_scene = true
 script = ExtResource("3_tbgi4")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tefeu"]
+size = Vector2(30, 240)
 
 [node name="Main" type="Node2D" unique_id=2093617782]
 
@@ -42,3 +46,20 @@ polygon = PackedVector2Array(-1921, 514, 1021, 503, 1324, 386, 1509, 223, 1651, 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Muros" unique_id=2096627615]
 build_mode = 1
 polygon = PackedVector2Array(-2001, 742, 1018, 739, 1329, 659, 1583, 526, 1808, 252, 1918, -93, 1933, -298, 1899, -541, 1766, -799, 1599, -967, 1348, -1141, 995, -1286, 262, -1593, -114, -1726, -490, -1764, -798, -1734, -1101, -1661, -1439, -1517, -1823, -1354, -2286, -1164, -2590, -986, -2780, -754, -2886, -568, -2939, -340, -2928, -97, -2841, 207, -2708, 393, -2552, 533, -2373, 636, -2210, 693)
+
+[node name="LinhaChegada" type="Area2D" parent="." unique_id=1697332815 node_paths=PackedStringArray("label_volta")]
+position = Vector2(-501, 625)
+script = ExtResource("5_tbgi4")
+label_volta = NodePath("../HUD/LabelVolta")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LinhaChegada" unique_id=1878414681]
+shape = SubResource("RectangleShape2D_tefeu")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=2000399033]
+
+[node name="LabelVolta" type="Label" parent="HUD" unique_id=1849013945]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Volta: 0"
+
+[connection signal="body_entered" from="LinhaChegada" to="LinhaChegada" method="_on_body_entered"]
