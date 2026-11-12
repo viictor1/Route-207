@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scenes/world/highway.gd" id="1_highway"]
+[ext_resource type="PackedScene" path="res://scenes/car/car.tscn" id="2_car"]
+[ext_resource type="Script" path="res://scenes/car/car_camera.gd" id="3_camera"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Highway" type="Node2D" parent="."]
+script = ExtResource("1_highway")
+car_path = NodePath("../Car")
+
+[node name="Car" parent="." instance=ExtResource("2_car")]
+
+[node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(0.82, 0.82)
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0
+script = ExtResource("3_camera")
+target_path = NodePath("../Car")
