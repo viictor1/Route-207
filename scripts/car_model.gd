@@ -3,17 +3,17 @@ extends Resource
 
 
 @export_group("Longitudinal")
-@export var max_speed: float = 920.0
-@export var reverse_max_speed: float = 320.0
-@export var acceleration: float = 1300.0
-@export var handbrake_brake: float = 700.0
-@export var coast_deceleration: float = 200.0
+@export var max_speed: float = 750.0
+@export var reverse_max_speed: float = 2700.0
+@export var acceleration: float = 500.0
+@export var handbrake_brake: float = 500.0
+@export var coast_deceleration: float = 90.0
 @export var drag: float = 0.35
 
 @export_group("Steering")
-@export var max_turn_rate: float = 3.2
+@export var max_turn_rate: float = 4
 @export var turn_speed_ref: float = 150.0
-@export var high_speed_turn_falloff: float = 0.45
+@export var high_speed_turn_falloff: float = 0.65
 @export var steer_smoothing: float = 9.0
 
 @export_group("Grip")

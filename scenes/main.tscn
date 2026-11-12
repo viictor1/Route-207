@@ -1,18 +1,26 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene format=3 uid="uid://dnytmea6nc0g0"]
 
-[ext_resource type="Script" path="res://scenes/world/highway.gd" id="1_highway"]
+[ext_resource type="Texture2D" uid="uid://c37h1l1sd7tn" path="res://assets/sprites/mapa_eua.png" id="1_jyhfs"]
 [ext_resource type="PackedScene" path="res://scenes/car/car.tscn" id="2_car"]
-[ext_resource type="Script" path="res://scenes/car/car_camera.gd" id="3_camera"]
+[ext_resource type="Script" uid="uid://c5vo37s52v7ph" path="res://scenes/car/car_camera.gd" id="3_camera"]
+[ext_resource type="Script" uid="uid://d2ndig7sl0vsr" path="res://scripts/car_model.gd" id="3_tbgi4"]
 
-[node name="Main" type="Node2D"]
+[sub_resource type="Resource" id="Resource_tefeu"]
+resource_local_to_scene = true
+script = ExtResource("3_tbgi4")
 
-[node name="Highway" type="Node2D" parent="."]
-script = ExtResource("1_highway")
-car_path = NodePath("../Car")
+[node name="Main" type="Node2D" unique_id=2093617782]
 
-[node name="Car" parent="." instance=ExtResource("2_car")]
+[node name="MapaEua" type="Sprite2D" parent="." unique_id=602840394]
+texture_filter = 1
+scale = Vector2(1.9, 1.9)
+texture = ExtResource("1_jyhfs")
 
-[node name="Camera" type="Camera2D" parent="."]
+[node name="Car" parent="." unique_id=232103198 instance=ExtResource("2_car")]
+position = Vector2(-2.3841858e-07, 0)
+model = SubResource("Resource_tefeu")
+
+[node name="Camera" type="Camera2D" parent="." unique_id=1930401467]
 zoom = Vector2(0.82, 0.82)
 position_smoothing_enabled = true
 position_smoothing_speed = 6.0
