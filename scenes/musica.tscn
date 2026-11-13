@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cj54rndp0lgqw"]
+
+[ext_resource type="AudioStream" uid="uid://cgvvkkh7eoh7p" path="res://assets/sounds/musica.ogg" id="1_u4ygf"]
+
+[node name="Musica" type="AudioStreamPlayer" unique_id=1687510384]
+process_mode = 3
+stream = ExtResource("1_u4ygf")
+volume_db = -18.0
+autoplay = true

@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dk1arl68yemjc" path="res://assets/sprites/obstaculos/obstacle_oil.png" id="8_rgetc"]
 [ext_resource type="Script" uid="uid://dednth31qmox7" path="res://scripts/ramp.gd" id="9_d6jxx"]
 [ext_resource type="Texture2D" uid="uid://bp0h6gm8mmvxf" path="res://assets/sprites/obstaculos/obstacle_ramp.png" id="10_860sr"]
+[ext_resource type="PackedScene" uid="uid://cj54rndp0lgqw" path="res://scenes/musica.tscn" id="20_musica"]
 
 [sub_resource type="Resource" id="Resource_860sr"]
 resource_local_to_scene = true
@@ -116,5 +117,7 @@ texture = ExtResource("10_860sr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rampa" unique_id=1300576779]
 shape = SubResource("RectangleShape2D_fo0t4")
+
+[node name="Musica" parent="." unique_id=1440392781 instance=ExtResource("20_musica")]
 
 [connection signal="body_entered" from="LinhaChegada" to="LinhaChegada" method="_on_body_entered"]
