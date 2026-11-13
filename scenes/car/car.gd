@@ -20,6 +20,7 @@ const MULT_SAND: float = 0.42
 @export var mapa_sprite: Sprite2D
 @export var mascara_superficie: Texture2D = preload("res://assets/sprites/mapa-eua-mask.png")
 @onready var _sprite: Sprite2D = $Sprite2D
+@onready var _som_motor: AudioStreamPlayer2D = $SomMotor
 
 var _mask_image: Image
 var _mask_size: Vector2
@@ -62,6 +63,9 @@ func _physics_process(delta: float) -> void:
 	rotation = model.heading
 	move_and_slide()
 	model.velocity = get_real_velocity()
+	var t := clampf(absf(model.speed) / model.max_speed, 0.0, 1.0)
+	_som_motor.pitch_scale = lerpf(0.7, 1.6, t)
+	_som_motor.volume_db = lerpf(-40.0, -10.0, minf(t * 4.0, 1.0))
 
 func _update_terrain() -> void:
 	if _mask_image == null or mapa_sprite == null or mapa_sprite.texture == null:

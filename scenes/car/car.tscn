@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://d2u1vurn70qsd" path="res://scenes/car/car.gd" id="1_car"]
 [ext_resource type="Texture2D" uid="uid://dgc4pg7oveh3n" path="res://assets/sprites/carro.png" id="2_carro"]
 [ext_resource type="Script" uid="uid://d2ndig7sl0vsr" path="res://scripts/car_model.gd" id="3_model"]
+[ext_resource type="AudioStream" uid="uid://cnrdwldtv5ef2" path="res://assets/sounds/motor.ogg" id="4_x7uf8"]
 
 [sub_resource type="Resource" id="CarModel_default"]
 resource_local_to_scene = true
@@ -23,3 +24,9 @@ texture = ExtResource("2_carro")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2047774652]
 shape = SubResource("RectangleShape2D_body")
+
+[node name="SomMotor" type="AudioStreamPlayer2D" parent="." unique_id=864850972]
+stream = ExtResource("4_x7uf8")
+volume_db = -10.0
+pitch_scale = 0.7
+autoplay = true
