@@ -26,6 +26,15 @@ height = 24.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fo0t4"]
 size = Vector2(50, 24)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cp_dir"]
+size = Vector2(300, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cp_cima"]
+size = Vector2(30, 300)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cp_esq"]
+size = Vector2(300, 30)
+
 [node name="Main" type="Node2D" unique_id=2093617782]
 
 [node name="MapaEua" type="Sprite2D" parent="." unique_id=602840394]
@@ -61,12 +70,13 @@ position = Vector2(3, 0)
 build_mode = 1
 polygon = PackedVector2Array(-1982, 734, 984, 736, 1159, 707, 1329, 659, 1459, 592, 1577, 516, 1704, 383, 1793, 263, 1866, 105, 1918, -93, 1933, -269, 1916, -430, 1894, -539, 1836, -673, 1765, -797, 1682, -887, 1599, -967, 1476, -1057, 1349, -1138, 995, -1286, 262, -1593, 117, -1650, -116, -1716, -295, -1750, -490, -1764, -798, -1734, -949, -1702, -1098, -1660, -1440, -1519, -1826, -1359, -2289, -1165, -2455, -1077, -2591, -981, -2699, -866, -2787, -754, -2845, -656, -2886, -568, -2917, -442, -2932, -340, -2937, -212, -2928, -97, -2889, 71, -2834, 201, -2775, 306, -2692, 410, -2622, 477, -2539, 544, -2461, 595, -2373, 636, -2293, 672, -2210, 695, -2110, 718)
 
-[node name="LinhaChegada" type="Area2D" parent="." unique_id=1697332815 node_paths=PackedStringArray("label_volta", "label_tempo", "label_melhor")]
+[node name="LinhaChegada" type="Area2D" parent="." unique_id=1697332815 node_paths=PackedStringArray("label_volta", "label_tempo", "label_melhor", "checkpoints")]
 position = Vector2(-501, 625)
 script = ExtResource("5_860sr")
 label_volta = NodePath("../HUD/LabelVolta")
 label_tempo = NodePath("../HUD/LabelTempo")
 label_melhor = NodePath("../HUD/LabelMelhorTempo")
+checkpoints = [NodePath("../CheckpointDireita"), NodePath("../CheckpointCima"), NodePath("../CheckpointEsquerda")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LinhaChegada" unique_id=1878414681]
 shape = SubResource("RectangleShape2D_tefeu")
@@ -119,5 +129,23 @@ texture = ExtResource("10_860sr")
 shape = SubResource("RectangleShape2D_fo0t4")
 
 [node name="Musica" parent="." unique_id=1440392781 instance=ExtResource("20_musica")]
+
+[node name="CheckpointDireita" type="Area2D" parent="." unique_id=238602297]
+position = Vector2(1810, -150)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointDireita" unique_id=1114820001]
+shape = SubResource("RectangleShape2D_cp_dir")
+
+[node name="CheckpointCima" type="Area2D" parent="." unique_id=1114820002]
+position = Vector2(-485, -1650)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointCima" unique_id=1114820003]
+shape = SubResource("RectangleShape2D_cp_cima")
+
+[node name="CheckpointEsquerda" type="Area2D" parent="." unique_id=1114820004]
+position = Vector2(-2820, -330)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointEsquerda" unique_id=1114820005]
+shape = SubResource("RectangleShape2D_cp_esq")
 
 [connection signal="body_entered" from="LinhaChegada" to="LinhaChegada" method="_on_body_entered"]
