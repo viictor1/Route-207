@@ -65,7 +65,7 @@ func _physics_process(delta: float) -> void:
 	model.velocity = get_real_velocity()
 	var t := clampf(absf(model.speed) / model.max_speed, 0.0, 1.0)
 	_som_motor.pitch_scale = lerpf(0.7, 1.6, t)
-	_som_motor.volume_db = lerpf(-40.0, -10.0, minf(t * 4.0, 1.0))
+	_som_motor.volume_db = lerpf(-37.0, -7.0, minf(t * 4.0, 1.0))
 
 func _update_terrain() -> void:
 	if _mask_image == null or mapa_sprite == null or mapa_sprite.texture == null:
