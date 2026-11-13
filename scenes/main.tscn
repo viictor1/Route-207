@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://c5vo37s52v7ph" path="res://scenes/car/car_camera.gd" id="3_camera"]
 [ext_resource type="Script" uid="uid://d2ndig7sl0vsr" path="res://scripts/car_model.gd" id="3_tbgi4"]
 [ext_resource type="Script" uid="uid://d1w6msng0622f" path="res://scenes/linha_chegada.gd" id="5_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://b7p4s3e9m2x1k" path="res://scenes/pause_menu.tscn" id="6_pause"]
 
 [sub_resource type="Resource" id="Resource_jyhfs"]
 resource_local_to_scene = true
@@ -75,5 +76,7 @@ offset_top = 60.0
 offset_right = 195.0
 offset_bottom = 83.0
 text = "Melhor Tempo: 00:00.000"
+
+[node name="PauseMenu" parent="." instance=ExtResource("6_pause")]
 
 [connection signal="body_entered" from="LinhaChegada" to="LinhaChegada" method="_on_body_entered"]
