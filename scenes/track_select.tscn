@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://b1fqerqsobvj4"]
+
+[ext_resource type="Script" uid="uid://dylg02wr4wfs8" path="res://scenes/track_select.gd" id="1_track"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_normal"]
+content_margin_left = 16.0
+content_margin_top = 10.0
+content_margin_right = 16.0
+content_margin_bottom = 10.0
+bg_color = Color(0.117647, 0.137255, 0.168627, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.243137, 0.278431, 0.329412, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pressed"]
+content_margin_left = 16.0
+content_margin_top = 10.0
+content_margin_right = 16.0
+content_margin_bottom = 10.0
+bg_color = Color(0.0862745, 0.101961, 0.12549, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.901961, 0.741176, 0.278431, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hover"]
+content_margin_left = 16.0
+content_margin_top = 10.0
+content_margin_right = 16.0
+content_margin_bottom = 10.0
+bg_color = Color(0.156863, 0.180392, 0.219608, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.843137, 0.352941, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_disabled"]
+content_margin_left = 16.0
+content_margin_top = 10.0
+content_margin_right = 16.0
+content_margin_bottom = 10.0
+bg_color = Color(0.0862745, 0.0941176, 0.109804, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.176471, 0.196078, 0.231373, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="TrackSelect" type="Control" unique_id=293155018]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_track")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1044388821]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0784314, 0.0862745, 0.105882, 1)
+
+[node name="Center" type="CenterContainer" parent="." unique_id=716754378]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuBox" type="VBoxContainer" parent="Center" unique_id=1922930009]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="Center/MenuBox" unique_id=181058400]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.843137, 0.352941, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/font_size = 72
+text = "TIME ATTACK"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Center/MenuBox" unique_id=1275763460]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65098, 0.678431, 0.741176, 1)
+theme_override_font_sizes/font_size = 20
+text = "Selecione a pista"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Center/MenuBox" unique_id=1996387113]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="Track1Button" type="Button" parent="Center/MenuBox" unique_id=638952793]
+custom_minimum_size = Vector2(280, 56)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.921569, 0.941176, 0.968627, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+text = "Pista 1 - EUA"
+
+[node name="Track2Button" type="Button" parent="Center/MenuBox" unique_id=677321091]
+custom_minimum_size = Vector2(280, 56)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.921569, 0.941176, 0.968627, 1)
+theme_override_colors/font_disabled_color = Color(0.4, 0.427451, 0.478431, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_disabled")
+text = "Pista 1 com obstáculos - EUA"
+
+[node name="BackButton" type="Button" parent="Center/MenuBox" unique_id=218056786]
+custom_minimum_size = Vector2(280, 56)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.921569, 0.941176, 0.968627, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+text = "Voltar"

@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://cef8sbivwe4f7"]
+
+[ext_resource type="Texture2D" uid="uid://c37h1l1sd7tn" path="res://assets/sprites/mapa_eua.png" id="1_onnsb"]
+[ext_resource type="PackedScene" uid="uid://eogo123encom" path="res://scenes/car/car.tscn" id="2_kshyt"]
+[ext_resource type="Script" uid="uid://d2ndig7sl0vsr" path="res://scripts/car_model.gd" id="3_rgetc"]
+[ext_resource type="Script" uid="uid://c5vo37s52v7ph" path="res://scenes/car/car_camera.gd" id="4_d6jxx"]
+[ext_resource type="Script" uid="uid://d1w6msng0622f" path="res://scenes/linha_chegada.gd" id="5_860sr"]
+[ext_resource type="PackedScene" uid="uid://b7p4s3fam2x1k" path="res://scenes/pause_menu.tscn" id="6_ebj57"]
+[ext_resource type="Script" uid="uid://cpjls6rtjwn18" path="res://scripts/oil.gd" id="7_kshyt"]
+[ext_resource type="Texture2D" uid="uid://dk1arl68yemjc" path="res://assets/sprites/obstaculos/obstacle_oil.png" id="8_rgetc"]
+[ext_resource type="Script" uid="uid://dednth31qmox7" path="res://scripts/ramp.gd" id="9_d6jxx"]
+[ext_resource type="Texture2D" uid="uid://bp0h6gm8mmvxf" path="res://assets/sprites/obstaculos/obstacle_ramp.png" id="10_860sr"]
+
+[sub_resource type="Resource" id="Resource_860sr"]
+resource_local_to_scene = true
+script = ExtResource("3_rgetc")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tefeu"]
+size = Vector2(30, 240)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fo0t4"]
+radius = 9.0
+height = 24.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fo0t4"]
+size = Vector2(50, 24)
+
+[node name="Main" type="Node2D" unique_id=2093617782]
+
+[node name="MapaEua" type="Sprite2D" parent="." unique_id=602840394]
+texture_filter = 1
+position = Vector2(-244, -483.00003)
+scale = Vector2(1.9, 1.9)
+texture = ExtResource("1_onnsb")
+metadata/_edit_lock_ = true
+
+[node name="Car" parent="." unique_id=232103198 instance=ExtResource("2_kshyt")]
+position = Vector2(-616, 570)
+model = SubResource("Resource_860sr")
+metadata/_edit_lock_ = true
+
+[node name="Camera" type="Camera2D" parent="." unique_id=1930401467]
+position = Vector2(-590, 570)
+zoom = Vector2(0.82, 0.82)
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0
+script = ExtResource("4_d6jxx")
+target_path = NodePath("../Car")
+metadata/_edit_lock_ = true
+
+[node name="Muros" type="StaticBody2D" parent="." unique_id=798183612]
+collision_layer = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Muros" unique_id=733920224]
+build_mode = 1
+polygon = PackedVector2Array(-1986, 501, 1003, 503, 1215, 440, 1376, 350, 1509, 223, 1651, -5, 1703, -189, 1678, -411, 1613, -572, 1546, -680, 1457, -776, 1368, -850, 1219, -938, -6, -1446, -249, -1504, -479, -1533, -732, -1509, -1044, -1436, -2058, -1011, -2297, -905, -2460, -786, -2548, -699, -2617, -593, -2673, -470, -2705, -317, -2706, -192, -2685, -86, -2613, 103, -2504, 253, -2348, 381, -2199, 452)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Muros" unique_id=2096627615]
+position = Vector2(3, 0)
+build_mode = 1
+polygon = PackedVector2Array(-1982, 734, 984, 736, 1159, 707, 1329, 659, 1459, 592, 1577, 516, 1704, 383, 1793, 263, 1866, 105, 1918, -93, 1933, -269, 1916, -430, 1894, -539, 1836, -673, 1765, -797, 1682, -887, 1599, -967, 1476, -1057, 1349, -1138, 995, -1286, 262, -1593, 117, -1650, -116, -1716, -295, -1750, -490, -1764, -798, -1734, -949, -1702, -1098, -1660, -1440, -1519, -1826, -1359, -2289, -1165, -2455, -1077, -2591, -981, -2699, -866, -2787, -754, -2845, -656, -2886, -568, -2917, -442, -2932, -340, -2937, -212, -2928, -97, -2889, 71, -2834, 201, -2775, 306, -2692, 410, -2622, 477, -2539, 544, -2461, 595, -2373, 636, -2293, 672, -2210, 695, -2110, 718)
+
+[node name="LinhaChegada" type="Area2D" parent="." unique_id=1697332815 node_paths=PackedStringArray("label_volta", "label_tempo", "label_melhor")]
+position = Vector2(-501, 625)
+script = ExtResource("5_860sr")
+label_volta = NodePath("../HUD/LabelVolta")
+label_tempo = NodePath("../HUD/LabelTempo")
+label_melhor = NodePath("../HUD/LabelMelhorTempo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LinhaChegada" unique_id=1878414681]
+shape = SubResource("RectangleShape2D_tefeu")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=2000399033]
+
+[node name="LabelVolta" type="Label" parent="HUD" unique_id=1849013945]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Volta: 0"
+
+[node name="LabelTempo" type="Label" parent="HUD" unique_id=960060216]
+offset_top = 30.0
+offset_right = 58.0
+offset_bottom = 53.0
+text = "Tempo: 00:00.000"
+
+[node name="LabelMelhorTempo" type="Label" parent="HUD" unique_id=104255168]
+offset_top = 60.0
+offset_right = 195.0
+offset_bottom = 83.0
+text = "Melhor Tempo: 00:00.000"
+
+[node name="PauseMenu" parent="." unique_id=1573688476 instance=ExtResource("6_ebj57")]
+
+[node name="Oleo" type="Area2D" parent="." unique_id=183491981]
+position = Vector2(1275, 497)
+scale = Vector2(2, 2)
+script = ExtResource("7_kshyt")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Oleo" unique_id=1875647579]
+texture = ExtResource("8_rgetc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Oleo" unique_id=704425985]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_fo0t4")
+
+[node name="Rampa" type="Area2D" parent="." unique_id=2095402053]
+position = Vector2(-1305, -1502)
+rotation = -2.0071287
+scale = Vector2(2, 2)
+script = ExtResource("9_d6jxx")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Rampa" unique_id=521022575]
+texture = ExtResource("10_860sr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rampa" unique_id=1300576779]
+shape = SubResource("RectangleShape2D_fo0t4")
+
+[connection signal="body_entered" from="LinhaChegada" to="LinhaChegada" method="_on_body_entered"]

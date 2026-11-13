@@ -5,9 +5,9 @@
 [ext_resource type="Script" uid="uid://c5vo37s52v7ph" path="res://scenes/car/car_camera.gd" id="3_camera"]
 [ext_resource type="Script" uid="uid://d2ndig7sl0vsr" path="res://scripts/car_model.gd" id="3_tbgi4"]
 [ext_resource type="Script" uid="uid://d1w6msng0622f" path="res://scenes/linha_chegada.gd" id="5_tbgi4"]
-[ext_resource type="PackedScene" uid="uid://b7p4s3e9m2x1k" path="res://scenes/pause_menu.tscn" id="6_pause"]
+[ext_resource type="PackedScene" uid="uid://b7p4s3fam2x1k" path="res://scenes/pause_menu.tscn" id="6_pause"]
 
-[sub_resource type="Resource" id="Resource_jyhfs"]
+[sub_resource type="Resource" id="Resource_tefeu"]
 resource_local_to_scene = true
 script = ExtResource("3_tbgi4")
 
@@ -24,8 +24,8 @@ texture = ExtResource("1_jyhfs")
 metadata/_edit_lock_ = true
 
 [node name="Car" parent="." unique_id=232103198 instance=ExtResource("2_car")]
-position = Vector2(-590, 570)
-model = SubResource("Resource_jyhfs")
+position = Vector2(-615, 570)
+model = SubResource("Resource_tefeu")
 metadata/_edit_lock_ = true
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1930401467]
@@ -42,11 +42,11 @@ collision_layer = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Muros" unique_id=733920224]
 build_mode = 1
-polygon = PackedVector2Array(-1921, 514, 1021, 503, 1324, 386, 1509, 223, 1651, -5, 1703, -189, 1688, -412, 1558, -695, 1378, -860, 0, -1453, -478, -1526, -997, -1434, -2050, -989, -2357, -837, -2587, -589, -2661, -387, -2670, -171, -2573, 128, -2348, 381, -2197, 459)
+polygon = PackedVector2Array(-1986, 501, 1003, 503, 1215, 440, 1376, 350, 1509, 223, 1651, -5, 1703, -189, 1678, -411, 1613, -572, 1546, -680, 1457, -776, 1368, -850, 1219, -938, -6, -1446, -249, -1504, -479, -1533, -732, -1509, -1044, -1436, -2058, -1011, -2297, -905, -2460, -786, -2548, -699, -2617, -593, -2673, -470, -2705, -317, -2706, -192, -2685, -86, -2613, 103, -2504, 253, -2348, 381, -2199, 452)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Muros" unique_id=2096627615]
 build_mode = 1
-polygon = PackedVector2Array(-2001, 742, 1018, 739, 1329, 659, 1583, 526, 1808, 252, 1918, -93, 1933, -298, 1899, -541, 1766, -799, 1599, -967, 1348, -1141, 995, -1286, 262, -1593, -114, -1726, -490, -1764, -798, -1734, -1101, -1661, -1439, -1517, -1823, -1354, -2286, -1164, -2590, -986, -2780, -754, -2886, -568, -2939, -340, -2928, -97, -2841, 207, -2708, 393, -2552, 533, -2373, 636, -2210, 693)
+polygon = PackedVector2Array(-1982, 734, 984, 736, 1159, 707, 1329, 659, 1459, 592, 1577, 516, 1704, 383, 1793, 263, 1866, 105, 1918, -93, 1933, -269, 1916, -430, 1894, -539, 1836, -673, 1765, -797, 1682, -887, 1599, -967, 1476, -1057, 1349, -1138, 995, -1286, 262, -1593, 117, -1650, -116, -1716, -295, -1750, -490, -1764, -798, -1734, -949, -1702, -1098, -1660, -1440, -1519, -1826, -1359, -2289, -1165, -2455, -1077, -2591, -981, -2699, -866, -2787, -754, -2845, -656, -2886, -568, -2917, -442, -2932, -340, -2937, -212, -2928, -97, -2889, 71, -2834, 201, -2775, 306, -2692, 410, -2622, 477, -2539, 544, -2461, 595, -2373, 636, -2293, 672, -2210, 695, -2110, 718)
 
 [node name="LinhaChegada" type="Area2D" parent="." unique_id=1697332815 node_paths=PackedStringArray("label_volta", "label_tempo", "label_melhor")]
 position = Vector2(-501, 625)
@@ -77,6 +77,6 @@ offset_right = 195.0
 offset_bottom = 83.0
 text = "Melhor Tempo: 00:00.000"
 
-[node name="PauseMenu" parent="." instance=ExtResource("6_pause")]
+[node name="PauseMenu" parent="." unique_id=1573688476 instance=ExtResource("6_pause")]
 
 [connection signal="body_entered" from="LinhaChegada" to="LinhaChegada" method="_on_body_entered"]

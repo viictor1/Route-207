@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="route207"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="uid://c8m3n7x2p5laq"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
