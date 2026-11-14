@@ -62,7 +62,10 @@ func _physics_process(delta: float) -> void:
 	velocity = model.velocity
 	rotation = model.heading
 	move_and_slide()
-	model.velocity = get_real_velocity()
+	for i in get_slide_collision_count():
+		var normal := get_slide_collision(i).get_normal()
+		if model.velocity.dot(normal) < 0.0:
+			model.velocity = model.velocity.slide(normal)
 	var t := clampf(absf(model.speed) / model.max_speed, 0.0, 1.0)
 	_som_motor.pitch_scale = lerpf(0.7, 1.6, t)
 	_som_motor.volume_db = lerpf(-37.0, -7.0, minf(t * 4.0, 1.0))
