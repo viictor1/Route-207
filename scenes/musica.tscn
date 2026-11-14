@@ -7,3 +7,4 @@ process_mode = 3
 stream = ExtResource("1_u4ygf")
 volume_db = -22.0
 autoplay = true
+bus = &"Musica"
