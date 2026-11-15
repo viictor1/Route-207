@@ -30,3 +30,4 @@ stream = ExtResource("4_x7uf8")
 volume_db = -10.0
 pitch_scale = 0.7
 autoplay = true
+bus = &"Efeitos"

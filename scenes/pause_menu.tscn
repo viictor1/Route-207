@@ -74,6 +74,36 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 
+[node name="Geral" type="Label" parent="Center/MenuBox" unique_id=986592735]
+layout_mode = 2
+text = "Geral"
+
+[node name="SliderGeral" type="HSlider" parent="Center/MenuBox" unique_id=1574264078]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="Música" type="Label" parent="Center/MenuBox" unique_id=366601458]
+layout_mode = 2
+text = "Música"
+
+[node name="SliderMusica" type="HSlider" parent="Center/MenuBox" unique_id=1683470350]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="Efeitos" type="Label" parent="Center/MenuBox" unique_id=1937688111]
+layout_mode = 2
+text = "Efeitos"
+
+[node name="SliderEfeitos" type="HSlider" parent="Center/MenuBox" unique_id=1878158028]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 1.0
+
 [node name="ResumeButton" type="Button" parent="Center/MenuBox" unique_id=735001635]
 custom_minimum_size = Vector2(280, 56)
 layout_mode = 2
