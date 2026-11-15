@@ -1,62 +1,45 @@
 [gd_scene format=3 uid="uid://b7p4s3fam2x1k"]
 
 [ext_resource type="Script" uid="uid://bour8q6ccr6rb" path="res://scenes/pause_menu.gd" id="1_pause"]
+[ext_resource type="Texture2D" uid="uid://cst1rbqasr13b" path="res://assets/sprites/menu/botao.png" id="2_kukqi"]
+[ext_resource type="Texture2D" uid="uid://csv7lrvl2rwea" path="res://assets/sprites/menu/botao SELECIONADO.png" id="3_5d2l8"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_normal"]
-content_margin_left = 16.0
-content_margin_top = 10.0
-content_margin_right = 16.0
-content_margin_bottom = 10.0
-bg_color = Color(0.117647, 0.137255, 0.168627, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.243137, 0.278431, 0.329412, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n87rw"]
+texture = ExtResource("2_kukqi")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pressed"]
-content_margin_left = 16.0
-content_margin_top = 10.0
-content_margin_right = 16.0
-content_margin_bottom = 10.0
-bg_color = Color(0.0862745, 0.101961, 0.12549, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.901961, 0.741176, 0.278431, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5d2l8"]
+texture = ExtResource("3_5d2l8")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hover"]
-content_margin_left = 16.0
-content_margin_top = 10.0
-content_margin_right = 16.0
-content_margin_bottom = 10.0
-bg_color = Color(0.156863, 0.180392, 0.219608, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 0.843137, 0.352941, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kukqi"]
+texture = ExtResource("3_5d2l8")
 
-[node name="PauseMenu" type="CanvasLayer" unique_id=161033483]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kukqi"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7l7mv"]
+texture = ExtResource("2_kukqi")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v4r4p"]
+texture = ExtResource("3_5d2l8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1s2dm"]
+texture = ExtResource("3_5d2l8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_88e76"]
+texture = ExtResource("2_kukqi")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_knqa7"]
+texture = ExtResource("3_5d2l8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_71k7c"]
+texture = ExtResource("3_5d2l8")
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=1104563387]
 process_mode = 3
 layer = 100
 visible = false
 script = ExtResource("1_pause")
 
-[node name="Dim" type="ColorRect" parent="." unique_id=725837762]
+[node name="Dim" type="ColorRect" parent="." unique_id=187041231]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -64,28 +47,30 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.6)
 
-[node name="Center" type="CenterContainer" parent="." unique_id=1089549968]
+[node name="Center" type="CenterContainer" parent="." unique_id=2125832272]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MenuBox" type="VBoxContainer" parent="Center" unique_id=482269938]
+[node name="MenuBox" type="VBoxContainer" parent="Center" unique_id=747718793]
 layout_mode = 2
 theme_override_constants/separation = 14
 
-[node name="Title" type="Label" parent="Center/MenuBox" unique_id=1303081156]
+[node name="Title" type="Label" parent="Center/MenuBox" unique_id=1992170945]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.843137, 0.352941, 1)
+theme_override_colors/font_color = Color(1, 0.94509804, 0.8627451, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5)
+theme_override_colors/font_outline_color = Color(0.14117648, 0.105882354, 0.2, 1)
 theme_override_constants/shadow_offset_x = 3
 theme_override_constants/shadow_offset_y = 3
-theme_override_font_sizes/font_size = 56
-text = "Pausa"
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 72
+text = "PAUSA"
 horizontal_alignment = 1
 
-[node name="Spacer" type="Control" parent="Center/MenuBox" unique_id=869816237]
+[node name="Spacer" type="Control" parent="Center/MenuBox" unique_id=1645960576]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 
@@ -119,32 +104,33 @@ max_value = 1.0
 step = 0.05
 value = 1.0
 
-[node name="ResumeButton" type="Button" parent="Center/MenuBox" unique_id=1607225258]
+[node name="ResumeButton" type="Button" parent="Center/MenuBox" unique_id=735001635]
 custom_minimum_size = Vector2(280, 56)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.921569, 0.941176, 0.968627, 1)
 theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
-theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/normal = SubResource("StyleBoxTexture_n87rw")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_5d2l8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_kukqi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kukqi")
 text = "Continuar"
 
-[node name="MainMenuButton" type="Button" parent="Center/MenuBox" unique_id=1614896911]
+[node name="MainMenuButton" type="Button" parent="Center/MenuBox" unique_id=521353647]
 custom_minimum_size = Vector2(280, 56)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.921569, 0.941176, 0.968627, 1)
 theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
-theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/normal = SubResource("StyleBoxTexture_7l7mv")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_v4r4p")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1s2dm")
 text = "Menu Principal"
 
-[node name="QuitButton" type="Button" parent="Center/MenuBox" unique_id=1803095722]
+[node name="QuitButton" type="Button" parent="Center/MenuBox" unique_id=2097814717]
 custom_minimum_size = Vector2(280, 56)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.921569, 0.941176, 0.968627, 1)
 theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
-theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/normal = SubResource("StyleBoxTexture_88e76")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_knqa7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_71k7c")
 text = "Sair"
