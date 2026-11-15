@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://c37h1l1sd7tn" path="res://assets/sprites/mapa_eua.png" id="1_onnsb"]
 [ext_resource type="PackedScene" uid="uid://eogo123encom" path="res://scenes/car/car.tscn" id="2_kshyt"]
-[ext_resource type="Script" uid="uid://d2ndig7sl0vsr" path="res://scripts/car_model.gd" id="3_rgetc"]
 [ext_resource type="Script" uid="uid://c5vo37s52v7ph" path="res://scenes/car/car_camera.gd" id="4_d6jxx"]
 [ext_resource type="Script" uid="uid://d1w6msng0622f" path="res://scenes/linha_chegada.gd" id="5_860sr"]
 [ext_resource type="PackedScene" uid="uid://b7p4s3fam2x1k" path="res://scenes/pause_menu.tscn" id="6_ebj57"]
@@ -11,10 +10,6 @@
 [ext_resource type="Script" uid="uid://dednth31qmox7" path="res://scripts/ramp.gd" id="9_d6jxx"]
 [ext_resource type="Texture2D" uid="uid://bp0h6gm8mmvxf" path="res://assets/sprites/obstaculos/obstacle_ramp.png" id="10_860sr"]
 [ext_resource type="PackedScene" uid="uid://cj54rndp0lgqw" path="res://scenes/musica.tscn" id="20_musica"]
-
-[sub_resource type="Resource" id="Resource_860sr"]
-resource_local_to_scene = true
-script = ExtResource("3_rgetc")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tefeu"]
 size = Vector2(30, 240)
@@ -46,7 +41,6 @@ metadata/_edit_lock_ = true
 
 [node name="Car" parent="." unique_id=232103198 instance=ExtResource("2_kshyt")]
 position = Vector2(-616, 570)
-model = SubResource("Resource_860sr")
 metadata/_edit_lock_ = true
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1930401467]
@@ -55,7 +49,6 @@ zoom = Vector2(0.82, 0.82)
 position_smoothing_enabled = true
 position_smoothing_speed = 6.0
 script = ExtResource("4_d6jxx")
-target_path = NodePath("../Car")
 metadata/_edit_lock_ = true
 
 [node name="Muros" type="StaticBody2D" parent="." unique_id=798183612]

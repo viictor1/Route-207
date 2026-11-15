@@ -1,14 +1,14 @@
 extends Area2D
 
-@export var jump_duration: float = 0.75
-@export var jump_boost: float = 140.0
-@export var min_speed: float = 120.0
+@export var duracao_pulo: float = 0.75
+@export var impulso_pulo: float = 140.0
+@export var velocidade_minima: float = 120.0
 
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 
 
-func _on_body_entered(body: Node2D) -> void:
-	if body is Car and body.model.speed >= min_speed:
-		body.apply_ramp(jump_duration, jump_boost)
+func _on_body_entered(body: Node2D):
+	if body is Car and body.model.velocidade_frente >= velocidade_minima:
+		body.aplica_rampa(duracao_pulo, impulso_pulo)

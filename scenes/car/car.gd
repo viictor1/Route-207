@@ -1,99 +1,106 @@
 class_name Car
 extends CharacterBody2D
 
+const GRUPO := &"player"
 
-const GROUP := &"player"
-
-const CAR_WHEELS: Array[Vector2] = [
-	Vector2(36.0, -15.0),  # Front left
-	Vector2(36.0, 15.0),   # Front right
-	Vector2(-36.0, -15.0), # Rear left
-	Vector2(-36.0, 15.0)   # Rear right
+const RODAS_CARRO: Array[Vector2] = [
+	Vector2(36.0, -15.0),  # Dianteira esquerda
+	Vector2(36.0, 15.0),   # Dianteira direita
+	Vector2(-36.0, -15.0), # Traseira esquerda
+	Vector2(-36.0, 15.0)   # Traseira direita
 ]
 
-const MULT_ASPHALT: float = 1.0
-const MULT_GRASS: float = 0.62
-const MULT_SAND: float = 0.42
+const MULT_ASFALTO: float = 1.0
+const MULT_GRAMA: float = 0.62
+const MULT_AREIA: float = 0.42
 
-@export var model: CarModel
-@export var sprite_rotation_offset_degrees: float = 90.0
+@export var modelo: CarModel
+@export var rotacao_inicial_sprite: float = 90.0
 @export var mapa_sprite: Sprite2D
 @export var mascara_superficie: Texture2D = preload("res://assets/sprites/mapa-eua-mask.png")
-@onready var _sprite: Sprite2D = $Sprite2D
-@onready var _som_motor: AudioStreamPlayer2D = $SomMotor
 
-var _mask_image: Image
-var _mask_size: Vector2
+@onready var sprite: Sprite2D = $Sprite2D
+@onready var som_motor: AudioStreamPlayer2D = $SomMotor
 
-func _ready() -> void:
-	add_to_group(GROUP)
-	if model == null:
-		model = CarModel.new()
-	rotation = model.heading
-	_sprite.rotation = deg_to_rad(sprite_rotation_offset_degrees)
+var imagem_mascara: Image
+var tamanho_mascara: Vector2
+
+
+func _ready():
+	add_to_group(GRUPO)
+	if modelo == null:
+		modelo = CarModel.new()
+	rotation = modelo.angulo
+	sprite.rotation = deg_to_rad(rotacao_inicial_sprite)
 
 	if mapa_sprite == null:
 		mapa_sprite = get_parent().get_node_or_null("MapaEua") as Sprite2D
 
 	if mascara_superficie != null:
-		_mask_image = mascara_superficie.get_image()
-		_mask_size = Vector2(_mask_image.get_size())
+		imagem_mascara = mascara_superficie.get_image()
+		tamanho_mascara = Vector2(imagem_mascara.get_size())
 
-func apply_oil(duration: float = 1.3) -> void:
-	model.trigger_oil(duration)
 
-func apply_ramp(duration: float = 0.75, boost: float = 140.0) -> void:
-	model.trigger_ramp(duration, boost)
+func aplica_oleo(duracao: float = 1.3):
+	modelo.aplicar_oleo(duracao)
 
-func _physics_process(delta: float) -> void:
-	if model.air_timer > 0.0:
-		var progress := 1.0 - (model.air_timer / maxf(model.air_duration, 0.01))
-		_sprite.scale = Vector2.ONE * (1.0 + 0.42 * sin(progress * PI))
+
+func aplica_rampa(duracao: float = 0.75, impulso: float = 140.0):
+	modelo.aplicar_rampa(duracao, impulso)
+
+
+func _physics_process(delta: float):
+	if modelo.tempo_no_ar > 0.0:
+		var progresso := 1.0 - (modelo.tempo_no_ar / maxf(modelo.duracao_salto, 0.01))
+		sprite.scale = Vector2.ONE * (1.0 + 0.42 * sin(progresso * PI))
 	else:
-		_sprite.scale = Vector2.ONE
-		_update_terrain()
+		sprite.scale = Vector2.ONE
 
-	var throttle := Input.get_axis("brake", "throttle")
-	var steer := Input.get_axis("steer_left", "steer_right")
-	var handbrake := Input.is_action_pressed("handbrake")
+	atualizar_terreno()
 
-	model.step(throttle, steer, handbrake, delta)
+	var acelerador := Input.get_axis("brake", "throttle")
+	var direcao := Input.get_axis("steer_left", "steer_right")
+	var freio_mao := Input.is_action_pressed("handbrake")
 
-	velocity = model.velocity
-	rotation = model.heading
+	modelo.atualizar_fisica(acelerador, direcao, freio_mao, delta)
+
+	velocity = modelo.velocidade
+	rotation = modelo.angulo
 	move_and_slide()
+
 	for i in get_slide_collision_count():
 		var normal := get_slide_collision(i).get_normal()
-		if model.velocity.dot(normal) < 0.0:
-			model.velocity = model.velocity.slide(normal)
-	var t := clampf(absf(model.speed) / model.max_speed, 0.0, 1.0)
-	_som_motor.pitch_scale = lerpf(0.7, 1.6, t)
-	_som_motor.volume_db = lerpf(-37.0, -7.0, minf(t * 4.0, 1.0))
+		if modelo.velocidade.dot(normal) < 0.0:
+			modelo.velocidade = modelo.velocidade.slide(normal)
 
-func _update_terrain() -> void:
-	if _mask_image == null or mapa_sprite == null or mapa_sprite.texture == null:
-		model.surface_speed_mult = MULT_ASPHALT
+	var t := clampf(absf(modelo.velocidade_frente) / modelo.velocidade_maxima, 0.0, 1.0)
+	som_motor.pitch_scale = lerpf(0.7, 1.6, t)
+	som_motor.volume_db = lerpf(-37.0, -7.0, minf(t * 4.0, 1.0))
+
+
+func atualizar_terreno():
+	if imagem_mascara == null or mapa_sprite == null or mapa_sprite.texture == null:
+		modelo.multiplicador_superficie = MULT_ASFALTO
 		return
 
-	var tex_size := mapa_sprite.texture.get_size()
+	var tamanho_textura := mapa_sprite.texture.get_size()
 	var soma_mult := 0.0
 
-	for local_point in CAR_WHEELS:
-		var current_pos := to_global(local_point)
-		var map_pos := mapa_sprite.to_local(current_pos)
-		var uv := (map_pos + tex_size * 0.5) / tex_size
-
-		var px := int(clampf(uv.x, 0.0, 0.999) * _mask_size.x)
-		var py := int(clampf(uv.y, 0.0, 0.999) * _mask_size.y)
-		var cor := _mask_image.get_pixel(px, py)
+	for ponto_roda in RODAS_CARRO:
+		var pos_global := to_global(ponto_roda)
+		var pos_mapa := mapa_sprite.to_local(pos_global)
+		var uv := (pos_mapa + tamanho_textura * 0.5) / tamanho_textura
+		var px := int(clampf(uv.x, 0.0, 0.999) * tamanho_mascara.x)
+		var py := int(clampf(uv.y, 0.0, 0.999) * tamanho_mascara.y)
+		var cor := imagem_mascara.get_pixel(px, py)
 
 		if cor.a < 0.2:
-			soma_mult += MULT_ASPHALT
-		elif cor.r > 0.6 and cor.g > 0.6: # Sand
-			soma_mult += MULT_SAND
-		elif cor.g > 0.45 and cor.r < 0.35 and cor.g > cor.b * 1.4: # Grass
-			soma_mult += MULT_GRASS
-		else: # Black / Asphalt
-			soma_mult += MULT_ASPHALT
+			soma_mult += MULT_ASFALTO
+		elif cor.r > 0.6 and cor.g > 0.6: # Areia
+			soma_mult += MULT_AREIA
+		elif cor.g > 0.45 and cor.r < 0.35 and cor.g > cor.b * 1.4: # Grama
+			soma_mult += MULT_GRAMA
+		else: # Asfalto
+			soma_mult += MULT_ASFALTO
 
-	model.surface_speed_mult = soma_mult / float(CAR_WHEELS.size())
+	modelo.multiplicador_superficie = soma_mult / float(RODAS_CARRO.size())
