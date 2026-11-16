@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var effect_duration: float = 1.3
+@export var duracao_efeito: float = 1.3
 
 
 func _ready() -> void:
@@ -9,4 +9,4 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Car:
-		body.apply_oil(effect_duration)
+		body.aplica_oleo(duracao_efeito)
