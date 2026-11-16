@@ -4,12 +4,17 @@
 [ext_resource type="PackedScene" uid="uid://eogo123encom" path="res://scenes/car/car.tscn" id="2_kshyt"]
 [ext_resource type="Script" uid="uid://c5vo37s52v7ph" path="res://scenes/car/car_camera.gd" id="4_d6jxx"]
 [ext_resource type="Script" uid="uid://d1w6msng0622f" path="res://scenes/linha_chegada.gd" id="5_860sr"]
+[ext_resource type="FontFile" uid="uid://hxxpo6s6ogxh" path="res://assets/sprites/hud/hud_font.png" id="6_ax6or"]
 [ext_resource type="PackedScene" uid="uid://b7p4s3fam2x1k" path="res://scenes/pause_menu.tscn" id="6_ebj57"]
 [ext_resource type="Script" uid="uid://cpjls6rtjwn18" path="res://scripts/oil.gd" id="7_kshyt"]
 [ext_resource type="Texture2D" uid="uid://dk1arl68yemjc" path="res://assets/sprites/obstaculos/obstacle_oil.png" id="8_rgetc"]
 [ext_resource type="Script" uid="uid://dednth31qmox7" path="res://scripts/ramp.gd" id="9_d6jxx"]
 [ext_resource type="Texture2D" uid="uid://bp0h6gm8mmvxf" path="res://assets/sprites/obstaculos/obstacle_ramp.png" id="10_860sr"]
 [ext_resource type="PackedScene" uid="uid://cj54rndp0lgqw" path="res://scenes/musica.tscn" id="20_musica"]
+
+[sub_resource type="Resource" id="Resource_cspno"]
+resource_local_to_scene = true
+script = ExtResource("3_rgetc")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tefeu"]
 size = Vector2(30, 240)
@@ -41,6 +46,7 @@ metadata/_edit_lock_ = true
 
 [node name="Car" parent="." unique_id=232103198 instance=ExtResource("2_kshyt")]
 position = Vector2(-616, 570)
+model = SubResource("Resource_cspno")
 metadata/_edit_lock_ = true
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1930401467]
@@ -79,19 +85,22 @@ shape = SubResource("RectangleShape2D_tefeu")
 [node name="LabelVolta" type="Label" parent="HUD" unique_id=1849013945]
 offset_right = 40.0
 offset_bottom = 23.0
-text = "Volta: 0"
+theme_override_fonts/font = ExtResource("6_ax6or")
+text = "V: 0"
 
 [node name="LabelTempo" type="Label" parent="HUD" unique_id=960060216]
 offset_top = 30.0
 offset_right = 58.0
 offset_bottom = 53.0
-text = "Tempo: 00:00.000"
+theme_override_fonts/font = ExtResource("6_ax6or")
+text = "A: 00:00.000"
 
 [node name="LabelMelhorTempo" type="Label" parent="HUD" unique_id=104255168]
 offset_top = 60.0
 offset_right = 195.0
 offset_bottom = 83.0
-text = "Melhor Tempo: 00:00.000"
+theme_override_fonts/font = ExtResource("6_ax6or")
+text = "MV: 00:00.000"
 
 [node name="PauseMenu" parent="." unique_id=1573688476 instance=ExtResource("6_ebj57")]
 

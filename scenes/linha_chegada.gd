@@ -19,7 +19,7 @@ func _ready():
 func _process(delta: float):
 	if voltas > 0:
 		tempo_volta += delta
-		label_tempo.text = "Tempo: " + formatar(tempo_volta)
+		label_tempo.text = "A: " + formatar(tempo_volta)
 
 
 func _on_checkpoint(body: Node2D, indice: int):
@@ -36,11 +36,11 @@ func _on_body_entered(body: Node2D):
 
 	if voltas > 0 and tempo_volta < melhor_volta:
 		melhor_volta = tempo_volta
-		label_melhor.text = "Melhor Tempo: " + formatar(melhor_volta)
+		label_melhor.text = "MV: " + formatar(melhor_volta)
 
 	tempo_volta = 0.0
 	voltas += 1
-	label_volta.text = "Volta: " + str(voltas)
+	label_volta.text = "V: " + str(voltas)
 	proximo_checkpoint = 0
 
 
