@@ -12,10 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://bp0h6gm8mmvxf" path="res://assets/sprites/obstaculos/obstacle_ramp.png" id="10_860sr"]
 [ext_resource type="PackedScene" uid="uid://cj54rndp0lgqw" path="res://scenes/musica.tscn" id="20_musica"]
 
-[sub_resource type="Resource" id="Resource_cspno"]
-resource_local_to_scene = true
-script = ExtResource("3_rgetc")
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tefeu"]
 size = Vector2(30, 240)
 
@@ -46,7 +42,6 @@ metadata/_edit_lock_ = true
 
 [node name="Car" parent="." unique_id=232103198 instance=ExtResource("2_kshyt")]
 position = Vector2(-616, 570)
-model = SubResource("Resource_cspno")
 metadata/_edit_lock_ = true
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1930401467]
